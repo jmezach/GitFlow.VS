@@ -8,6 +8,7 @@ namespace GitFlowVS.Extension
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     [ProvideAutoLoad(UIContextGuids80.NoSolution)]
     [Guid(GuidList.GuidGitFlowVsExtensionPkgString)]
+    [ProvideBindingPath]
     public sealed class GitFlow_VS_ExtensionPackage : Package
     {
     }

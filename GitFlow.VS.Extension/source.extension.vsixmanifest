@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="19ffe08d-8c71-4125-a024-6296bd27fce8" Version="0.9.13" Language="en-US" Publisher="Jakob Ehn" />
-    <DisplayName>GitFlow for Visual Studio</DisplayName>
+    <Identity Id="3CD51F76-D7A1-4745-B750-D966C228A85C" Version="0.9.13" Language="en-US" Publisher="Jakob Ehn" />
+    <DisplayName>GitFlow for Visual Studio 2015</DisplayName>
     <Description xml:space="preserve">Integrates GitFlow in Visual Studio Team Explorer 2015</Description>
     <License>License.rtf</License>
     <Icon>icon.png</Icon>
@@ -14,7 +14,7 @@
   </Installation>
   <Dependencies>
     <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
-    <Dependency Id="Microsoft.VisualStudio.MPF.12.0" DisplayName="Visual Studio MPF 12.0" d:Source="Installed" Version="[12.0]" />
+    <Dependency Id="Microsoft.VisualStudio.MPF.14.0" DisplayName="Visual Studio MPF 14.0" d:Source="Installed" Version="[14.0,15.0)" />
   </Dependencies>
   <Assets>
     <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />

@@ -4,15 +4,15 @@ namespace GitFlowVS.Extension
 {
     static class GuidList
     {
-        public const string GuidGitFlowVsExtensionPkgString = "19ffe08d-8c71-4125-a024-6296bd27fce8";
-        public const string GuidGitFlowVsExtensionCmdSetString = "9be3ffde-c8d0-4d89-824b-f310e4d05ca1";
+        public const string GuidGitFlowVsExtensionPkgString = "3CD51F76-D7A1-4745-B750-D966C228A85C";
+        public const string GuidGitFlowVsExtensionCmdSetString = "E35D3FF0-6EA0-493F-8995-B49AC6BC9531";
 
         public static readonly Guid GuidGitFlowVsExtensionCmdSet = new Guid(GuidGitFlowVsExtensionCmdSetString);
 
-        public const string GitFlowPage = "1F9974CD-16C3-4AEF-AED2-0CE37988E2F1";
-        public const string GitFlowActionSection = "F63C9A55-E0A2-4E7C-A78B-C37512EAEE5D";
-        public const string GitFlowFeaturesSection = "FED30B30-AEB3-4CCA-963B-1D044A9B90E5";
-        public const string GitFlowInitSection = "12760882-D1DE-46FF-8965-045017C7472D";
-        public const string GitFlowInstallSection = "9D57DC9D-5B59-4B0B-B581-809E6C973D57";
+        public const string GitFlowPage = "AEE88AD6-C514-41A4-A97D-ECADB5E6B7C1";
+        public const string GitFlowActionSection = "BF6F8437-D03B-42A1-83B4-12BF3DBC53F6";
+        public const string GitFlowFeaturesSection = "C5516AF6-77C8-4C7B-9A8D-EDA352A1EACE";
+        public const string GitFlowInitSection = "84C3D327-2BB2-4464-852E-9B88D9B8C905";
+        public const string GitFlowInstallSection = "B70EBAD9-9993-4F28-8185-9C9A0425CF9A";
     };
 }
