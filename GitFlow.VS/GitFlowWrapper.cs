@@ -85,6 +85,48 @@ namespace GitFlow.VS
             }
         }
 
+        public string MasterBranchName
+        {
+            get
+            {
+                using (var repo = new Repository(repoDirectory))
+                {
+                    var masterBranch = repo.Config.Get<string>("gitflow.branch.master");
+                    if (masterBranch == null)
+                        return null;
+                    return masterBranch.Value;
+                }
+            }
+        }
+
+        public string DevelopBranchName
+        {
+            get
+            {
+                using (var repo = new Repository(repoDirectory))
+                {
+                    var developBranch = repo.Config.Get<string>("gitflow.branch.develop");
+                    if (developBranch == null)
+                        return null;
+                    return developBranch.Value;
+                }
+            }
+        }
+
+        public string FeatureBranchPrefix
+        {
+            get
+            {
+                using (var repo = new Repository(repoDirectory))
+                {
+                    var featureBranchPrefix = repo.Config.Get<string>("gitflow.prefix.feature");
+                    if (featureBranchPrefix == null)
+                        return null;
+                    return featureBranchPrefix.Value;
+                }
+            }
+        }
+
         public string CurrentStatus
         {
             get

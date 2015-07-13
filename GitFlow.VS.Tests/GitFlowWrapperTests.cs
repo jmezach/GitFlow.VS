@@ -342,6 +342,38 @@ namespace GitFlow.VS.Tests
             Assert.IsTrue(gf.IsHooksAndFiltersQuery(query));
         }
 
+        [TestMethod]
+        public void MasterBranchNameCanBeRetrieved()
+        {
+            var gf = new GitFlowWrapper(sampleRepoPath);
+            gf.Init(new GitFlowRepoSettings());
+            Assert.AreEqual("master", gf.MasterBranchName);
+        }
+
+        [TestMethod]
+        public void MasterBranchNameCanBeRetrievedWithADifferentName()
+        {
+            var gf = new GitFlowWrapper(sampleRepoPath);
+            gf.Init(new GitFlowRepoSettings { MasterBranch = "somemaster" });
+            Assert.AreEqual("somemaster", gf.MasterBranchName);
+        }
+
+        [TestMethod]
+        public void DevelopBranchNameCanBeRetrieved()
+        {
+            var gf = new GitFlowWrapper(sampleRepoPath);
+            gf.Init(new GitFlowRepoSettings());
+            Assert.AreEqual("develop", gf.DevelopBranchName);
+        }
+
+        [TestMethod]
+        public void DevelopBranchNameCanBeRetrievedWithADifferentName()
+        {
+            var gf = new GitFlowWrapper(sampleRepoPath);
+            gf.Init(new GitFlowRepoSettings { DevelopBranch = "somedevelop" });
+            Assert.AreEqual("somedevelop", gf.DevelopBranchName);
+        }
+
         //Necessary in order to delete directory containing readonly files
         public static void DeleteReadOnlyDirectory(string directory)
         {

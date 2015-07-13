@@ -15,7 +15,7 @@ namespace GitFlowVS.Extension
 
 		static Logger()
 		{
-		    TelemetryConfiguration.Active.InstrumentationKey = "0aafb28d-ec58-4d70-b42c-ad53134bee79";
+            TelemetryClient = new TelemetryClient();
             TelemetryClient.Context.Properties["VisualStudioVersion"] = VSVersion.FullVersion.ToString();
 		}
 
