@@ -1,3 +1,4 @@
+using System;
 using GitFlowVS.Extension.UI;
 using GitFlowVS.Extension.ViewModels;
 using Microsoft.TeamFoundation.Controls;
@@ -9,6 +10,7 @@ namespace GitFlowVS.Extension
     public class GitFlowActionSection : TeamExplorerBaseSection, IGitFlowSection
     {
         private readonly ActionViewModel model;
+        private Guid notificationGuid;
 
         public GitFlowActionSection()
         {
@@ -35,6 +37,21 @@ namespace GitFlowVS.Extension
             var gf = new VsGitFlowWrapper(GitFlowPage.ActiveRepo.RepositoryPath, GitFlowPage.OutputWindow);
             if (gf.IsInitialized)
             {
+                if (GitFlowPage.ActiveRepo.IsTfsGitRepository() && GitFlowPage.ActiveRepo.AreBranchPoliciesActive())
+                {
+                    if (notificationGuid == Guid.Empty && ServiceProvider != null)
+                    {
+                        notificationGuid = ShowNotification("Branch policies apply to this repository.", NotificationType.Information);
+                    }
+                }
+                else
+                {
+                    if (notificationGuid != Guid.Empty && ServiceProvider != null)
+                    {
+                        HideNotification(notificationGuid);
+                    }
+                }
+
                 if (!IsVisible)
                 {
                     SectionContent = new GitFlowActionsUI(model);

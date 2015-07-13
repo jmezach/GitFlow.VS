@@ -24,6 +24,7 @@ namespace TeamExplorer.Common
         /// </summary>
         public virtual void Loaded(object sender, PageLoadedEventArgs e)
         {
+            Refresh();
         }
 
         /// <summary>

@@ -72,6 +72,38 @@ namespace TeamExplorer.Common
             return Guid.Empty;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether a notification with the specified <paramref name="id"/> is currently visible.
+        /// </summary>
+        /// <param name="id">Identifier of the notification to check for visibility.</param>
+        /// <returns>Returns <c>true</c> if the specified notification is currently visible, otherwise <c>false</c>.</returns>
+        public bool IsNotificationVisibile(Guid id)
+        {
+            ITeamExplorer teamExplorer = GetService<ITeamExplorer>();
+            if (teamExplorer != null)
+            {
+                return teamExplorer.IsNotificationVisible(id);
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Hides the notification with the specified <paramref name="id"/>.
+        /// </summary>
+        /// <param name="id">Identifier of the notification to check for visibility.</param>
+        /// <returns>Returns <c>true</c> if the specified notification was hidden, otherwise <c>false</c>.</returns>
+        public bool HideNotification(Guid id)
+        {
+            ITeamExplorer teamExplorer = GetService<ITeamExplorer>();
+            if (teamExplorer != null)
+            {
+                return teamExplorer.HideNotification(id);
+            }
+
+            return false;
+        }
+
         #region IDisposable
 
         /// <summary>

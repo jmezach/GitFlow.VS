@@ -2,18 +2,10 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Web;
 using System.Windows;
 using System.Windows.Input;
 using GitFlow.VS;
-using Microsoft.TeamFoundation;
-using Microsoft.TeamFoundation.Client;
 using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
-using Microsoft.TeamFoundation.Framework.Client;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace GitFlowVS.Extension.ViewModels
 {
@@ -436,7 +428,7 @@ namespace GitFlowVS.Extension.ViewModels
 
                 var gf = new VsGitFlowWrapper(GitFlowPage.ActiveRepoPath, GitFlowPage.OutputWindow);
                 var canFinishFeature = true;
-                if (GitFlowPage.BranchPoliciesApply && GitFlowPage.BranchesWithPolicies.Contains(gf.DevelopBranchName))
+                if (GitFlowPage.ActiveRepo.IsTfsGitRepository() && GitFlowPage.ActiveRepo.AreBranchPoliciesActive(gf.DevelopBranchName))
                 {
                     // Branch policies apply to the develop branch, ask if the user wants to publish the feature instead
                     var message = string.Format(CultureInfo.CurrentCulture, "A branch policy is in effect on the {0} branch. Do you want to publish your feature instead and create a pull request?", gf.DevelopBranchName);
@@ -452,18 +444,7 @@ namespace GitFlowVS.Extension.ViewModels
                         }
 
                         // Open the browser so the user can create a pull request
-                        var context = GitFlowPage.TeamFoundationContextManager.CurrentContext;
-                        var sourceControlContext = context as ITeamFoundationSourceControlContext;
-                        var locationService = context.TeamProjectCollection.GetService<ILocationService>();
-                        var serviceDefinition = locationService.FindServiceDefinition("PullRequestCreateWeb", FrameworkServiceIdentifiers.PullRequestCreateWeb);
-                        var url = locationService.LocationForCurrentConnection(serviceDefinition);
-                        url = url.Replace("{collectionId}", context.TeamProjectCollection.InstanceId.ToString("D"));
-                        url = url.Replace("{projectName}", context.TeamProjectName);
-                        url = url.Replace("/{teamName}", (context.HasTeam ? "/" + context.TeamName : string.Empty));
-                        url = url.Replace("{repoName}", sourceControlContext.RepositoryIds.First().ToString());
-                        url = url.Replace("{sourceRefName}", HttpUtility.UrlEncode(gf.FeatureBranchPrefix + SelectedFeature.Name));
-                        url = url.Replace("{targetRefName}", gf.DevelopBranchName);
-                        BrowserHelper.LaunchBrowser(url);
+                        GitFlowPage.ActiveRepo.CreatePullRequest(gf.FeatureBranchPrefix + SelectedFeature.Name, gf.DevelopBranchName);
                     }
                 }
 
